@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Women Safety</title>
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Women Safety</h1>
+        <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">☰</button>
+        <nav id="site-nav">
+            <a href="#top">Home</a>
+            <a href="#safety-tools">Safety tools</a>
+            <a href="#emergency-help">Emergency</a>
+            <a href="#trusted-contacts">Contacts</a>
+            {% if session.get('user_id') %}
+                <span class="nav-user">Hi, {{ session.get('user_name') }}</span>
+                <a href="{{ url_for('dashboard') }}">My account</a>
+                <a href="{{ url_for('logout') }}">Log out</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Log in</a>
+                <a href="{{ url_for('register') }}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <p class="flash-message {{ category }}">{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    <main id="top">
+
+        <section class="hero">
+            <h2>Your Safety Matters</h2>
+
+            <p>
+                Get quick access to emergency help,
+                safety resources, and trusted contacts.
+            </p>
+
+        </section>
+        <section class="sos-panel" aria-labelledby="sos-heading">
+            <p class="sos-label">Emergency assistance</p>
+            <h2 id="sos-heading">Need help right now?</h2>
+            <p>Share your live location with the emergency contacts saved in your account.</p>
+        <button id="sosButton" type="button" onclick="sendSOS()">
+    🚨 SOS - I NEED HELP
+</button>
+
+<p id="sos-message" class="sos-message" role="status"></p>
+<div id="sos-contact-actions" class="sos-contact-actions" aria-live="polite"></div>
+</section>
+<section class="features" id="safety-tools">
+
+    <h2>Safety Tools</h2>
+
+    <div class="feature-container">
+
+        <!-- Location -->
+        <div class="feature-card">
+
+            <h3>📍 My Location</h3>
+
+            <p>
+                Get your current location and
+                share it during an emergency.
+            </p>
+
+            <button onclick="getLocation()">
+                Get Location
+            </button>
+
+            <p id="location-result"></p>
+
+        </div>
+
+
+        <!-- Emergency Call -->
+        <div class="feature-card">
+
+            <h3>📞 Emergency Call</h3>
+
+            <p>
+                Quickly contact emergency services.
+            </p>
+
+            <button onclick="callEmergency()">
+                Call 112
+            </button>
+
+        </div>
+
+
+        <!-- Voice SOS -->
+        <div class="feature-card">
+
+            <h3>🎤 Voice SOS</h3>
+
+            <p>
+                Say HELP or SOS to activate emergency mode.
+            </p>
+
+            <button onclick="enhancedVoiceSOS()">
+                Start Voice SOS
+            </button>
+            <p id="voice-sos-status" class="tool-status" role="status"></p>
+
+        </div>
+
+
+        <!-- Emergency SMS -->
+        <div class="feature-card">
+
+            <h3>📩 Emergency SMS</h3>
+
+            <p>
+                Send an emergency message to a trusted person.
+            </p>
+
+            <button onclick="enhancedSendEmergencySMS()">
+                Share SOS by SMS
+            </button>
+            <p class="tool-status">Uses your saved contacts and live location.</p>
+
+        </div>
+
+
+        <!-- Fake Call -->
+        <div class="feature-card">
+
+            <h3>📱 Fake Call</h3>
+
+            <p>
+                Create a fake incoming call when you need an exit.
+            </p>
+
+            <button onclick="enhancedFakeCall()">
+                Fake Call
+            </button>
+            <p class="tool-status">Simulates an incoming call to help you exit a situation.</p>
+
+        </div>
+
+
+        <!-- Safety Timer -->
+        <div class="feature-card">
+
+            <h3>⏱️ Safety Timer</h3>
+
+            <p>
+                Start a one-minute safety check timer.
+            </p>
+
+            <label class="timer-label" for="timerMinutes">Check-in after</label>
+            <select id="timerMinutes">
+                <option value="1">1 minute</option>
+                <option value="5">5 minutes</option>
+                <option value="10">10 minutes</option>
+            </select>
+            <button onclick="enhancedStartTimer()">
+                Start Timer
+            </button>
+            <button class="secondary-tool-button" onclick="enhancedPauseTimer()">Pause / Resume</button>
+            <button class="secondary-tool-button" onclick="enhancedResetTimer()">Reset</button>
+            <h3 id="timer">01:00</h3>
+            <p id="timer-status" class="tool-status" role="status">Set a check-in reminder.</p>
+
+        </div>
+
+    </div>
+
+</section>
+        <section class="emergency" id="emergency-help">
+            <h2>Emergency Help</h2>
+
+            <p>Click the SOS button during an emergency.</p>
+
+            <h3>Emergency Contacts</h3>
+
+            <p>Police: 112</p>
+            <p>Women Helpline: 181</p>
+        </section>
+        <button id="secondarySosButton" type="button" onclick="document.getElementById('sos-heading').scrollIntoView({behavior: 'smooth'})">
+    🚨 HOLD FOR SOS
+</button>
+<section class="contacts" id="trusted-contacts">
+
+    <h2>👥 Trusted Contacts</h2>
+
+    <p>
+        Keep important people ready to contact during an emergency.
+    </p>
+
+    <div class="contact-box">
+
+        <input
+            type="text"
+            id="contactName"
+            placeholder="Contact Name"
+        >
+
+        <input
+            type="tel"
+            id="contactPhone"
+            placeholder="Phone Number"
+        >
+
+        <button onclick="addTrustedContact()">
+            Add Contact
+        </button>
+
+    </div>
+
+    <div id="contactList"></div>
+
+</section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Women Safety Website</p>
+    </footer>
+
+    <!-- <script src="script.js"></script> -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

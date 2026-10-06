@@ -1,0 +1,502 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f8f4fa;
+    color: #25142f;
+}
+
+header {
+    background: linear-gradient(120deg, #55216b, #9c4db4);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.nav-toggle {
+    display: none;
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    padding: 7px 10px;
+    color: white;
+    border: 1px solid rgba(255,255,255,.7);
+    background: transparent;
+    border-radius: 7px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.hero {
+    padding: 86px 20px 46px;
+    background: radial-gradient(circle at 80% 20%, #edd7f5 0, transparent 26%), #f8f4fa;
+}
+
+.hero h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#sosButton {
+    background-color: #fff;
+    color: #991832;
+    border: 2px solid white;
+    padding: 17px 36px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+#sosButton:hover {
+    background-color: #ffdce4;
+}
+
+#secondarySosButton {
+    background: #8e44ad;
+    border: 0;
+    border-radius: 9px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 24px 0 38px;
+    padding: 13px 22px;
+}
+
+#secondarySosButton:hover { background: #6c3483; }
+
+.sos-panel {
+    max-width: 850px;
+    margin: 0 auto 65px;
+    padding: 42px 28px;
+    color: white;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #8b1332, #d23858);
+    box-shadow: 0 18px 35px rgba(139, 19, 50, .25);
+}
+
+.sos-panel h2 { margin: 8px 0 12px; font-size: 30px; }
+.sos-panel > p:not(.sos-label):not(.sos-message) { margin-bottom: 24px; }
+.sos-label { font-size: 13px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: bold; opacity: .85; }
+.sos-message { margin: 20px 0 0; font-weight: bold; }
+.sos-message a { color: white; }
+.sos-contact-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.sos-contact-button { background: white; color: #8b1332; border-radius: 8px; padding: 11px 14px; font-weight: bold; text-decoration: none; }
+.sos-contact-button:hover { background: #ffdce4; }
+
+.emergency {
+    background-color: white;
+    padding: 50px;
+}
+
+.emergency h2 {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+/* =================================
+   SAFETY FEATURES
+================================= */
+
+.features {
+    padding: 60px 20px;
+    background: #f8f8f8;
+}
+
+.features h2 {
+    margin-bottom: 30px;
+}
+
+.feature-container {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+.feature-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform .2s ease, box-shadow .2s ease;
+
+    text-align: center;
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    color: #555;
+
+    margin-bottom: 15px;
+}
+
+.feature-card button,
+.contact-box button {
+    background: #8e44ad;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.tool-status { font-size: 13px; margin-top: 12px; color: #65536b; }
+.timer-label { display: block; font-size: 13px; margin: 14px 0 5px; }
+.feature-card select { padding: 9px; border: 1px solid #ccc; border-radius: 7px; margin: 0 0 10px; }
+.feature-card .secondary-tool-button { background: #eee; color: #522d61; margin: 8px 3px 0; }
+
+.feature-card button:hover,
+.contact-box button:hover {
+    background: #6c3483;
+}
+
+
+/* =================================
+   CONTACTS
+================================= */
+
+.contacts {
+    padding: 60px 20px;
+
+    background: white;
+}
+
+.contact-box {
+    max-width: 600px;
+
+    margin: 30px auto;
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.contact-box input {
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    flex: 1;
+}
+
+.contact-item {
+    max-width: 600px;
+
+    margin: 15px auto;
+
+    padding: 20px;
+
+    background: #f5f5f5;
+
+    border-radius: 10px;
+}
+
+.contact-item a {
+    color: #8e44ad;
+
+    margin-right: 10px;
+}
+
+.contact-item button {
+    background: #e74c3c;
+
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   DARK MODE
+================================= */
+
+.dark-mode {
+    background: #121212;
+
+    color: white;
+}
+
+.dark-mode .features,
+.dark-mode .contacts {
+    background: #1e1e1e;
+}
+
+.dark-mode .feature-card,
+.dark-mode .contact-item {
+    background: #2a2a2a;
+
+    color: white;
+}
+
+.dark-mode .feature-card p {
+    color: #ddd;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 768px) {
+
+    header { text-align: left; padding: 16px 18px; }
+    header h1 { font-size: 24px; }
+    .nav-toggle { display: block; }
+    nav { display: none; margin: 16px 0 0; }
+    nav.nav-open { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    nav a, .nav-user { margin: 3px 0; }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-box {
+        flex-direction: column;
+    }
+
+}
+
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(0,0,0,.13); }
+
+.nav-user {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.flash-message {
+    max-width: 720px;
+    margin: 18px auto;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.flash-message.success {
+    background: #d9f5e3;
+    color: #1d6a3a;
+}
+
+.flash-message.error {
+    background: #fde1e1;
+    color: #9f2020;
+}
+
+.auth-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5e9fa, #f5f5f5);
+}
+
+.auth-header {
+    text-align: center;
+}
+
+.auth-card {
+    max-width: 620px;
+    margin: 38px auto;
+    padding: 32px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    text-align: left;
+}
+
+.auth-card h2, .auth-card > p {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.auth-form label {
+    display: block;
+    margin: 16px 0 6px;
+    font-weight: bold;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cfcfcf;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.contact-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.contact-row input { margin: 0; }
+
+.add-contact, .remove-contact, .auth-submit {
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.add-contact, .auth-submit { background: #8e44ad; color: white; }
+.remove-contact { background: #f8d7da; color: #8d1b27; }
+.auth-submit { width: 100%; margin-top: 24px; font-weight: bold; }
+.auth-links { text-align: center; margin-top: 18px; }
+
+.dashboard-layout {
+    max-width: 900px;
+    margin: 36px auto;
+    padding: 0 18px 36px;
+    text-align: left;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 28px;
+    margin-top: 20px;
+}
+
+.dashboard-card h2 { margin-bottom: 10px; }
+
+.profile-details div {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+.profile-details dt { font-weight: bold; color: #555; }
+.profile-details dd { margin: 0; }
+
+.contact-add-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.contact-add-form input {
+    padding: 12px;
+    border: 1px solid #cfcfcf;
+    border-radius: 8px;
+}
+
+.contact-add-form button, .delete-button {
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.contact-add-form button { background: #8e44ad; color: white; }
+.saved-contact { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-top: 1px solid #eee; }
+.saved-contact span { display: block; margin-top: 5px; color: #555; }
+.saved-contact > div:last-child { display: flex; gap: 14px; align-items: center; }
+.saved-contact a { color: #6c3483; }
+.saved-contact form { display: inline; }
+.delete-button { background: #f8d7da; color: #8d1b27; }
+.empty-state { color: #666; }
+
+.sos-history-list { margin-top: 18px; }
+.sos-history-item {
+    align-items: center;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px 0;
+}
+.sos-history-item strong, .sos-history-item span, .sos-history-item small { display: block; }
+.sos-history-item span { color: #555; margin: 5px 0; }
+.sos-history-item small { color: #777; }
+.sos-history-item a { color: #6c3483; font-weight: bold; white-space: nowrap; }
+
+.fake-call-modal {
+    align-items: center;
+    background: rgba(16, 10, 20, .68);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    padding: 18px;
+    position: fixed;
+    z-index: 20;
+}
+
+.fake-call-card {
+    background: linear-gradient(155deg, #321d4a, #15101f);
+    border-radius: 26px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    color: white;
+    max-width: 350px;
+    padding: 42px 28px 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.incoming-label { color: #d9c5e6; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+.caller-avatar { align-items: center; background: #a460bb; border-radius: 50%; display: flex; font-size: 40px; height: 92px; justify-content: center; margin: 26px auto 18px; width: 92px; }
+.fake-call-card h2 { margin-bottom: 7px; }
+.fake-call-actions { display: flex; gap: 14px; justify-content: center; margin-top: 38px; }
+.fake-call-actions button { border: 0; border-radius: 50px; color: white; cursor: pointer; font-weight: bold; padding: 13px 19px; }
+.decline-call { background: #d53c50; }
+.answer-call { background: #2d9d5e; }
+
+@media (max-width: 600px) {
+    .auth-card { margin: 20px 12px; padding: 24px; }
+    .contact-row { grid-template-columns: 1fr; }
+    .contact-add-form { grid-template-columns: 1fr; }
+    .saved-contact { align-items: flex-start; gap: 12px; }
+    .sos-history-item { align-items: flex-start; flex-direction: column; }
+}

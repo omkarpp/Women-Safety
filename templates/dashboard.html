@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My account | Women Safety</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-page">
+    <header class="auth-header">
+        <h1>Women Safety</h1>
+        <nav>
+            <a href="{{ url_for('main_page') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Log out</a>
+        </nav>
+    </header>
+    <main class="dashboard-layout">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}<p class="flash-message {{ category }}">{{ message }}</p>{% endfor %}
+        {% endwith %}
+        <section class="dashboard-card">
+            <h2>My profile</h2>
+            <dl class="profile-details">
+                <div><dt>Name</dt><dd>{{ user.name }}</dd></div>
+                <div><dt>Email</dt><dd>{{ user.email }}</dd></div>
+                <div><dt>Mobile</dt><dd>{{ user.mobile_number }}</dd></div>
+            </dl>
+        </section>
+        <section class="dashboard-card">
+            <h2>Emergency contacts</h2>
+            <p>Add people you trust so their details are always saved to your account.</p>
+            <form class="contact-add-form" action="{{ url_for('add_emergency_contact') }}" method="post">
+                <input name="name" placeholder="Contact name" required>
+                <input type="tel" name="mobile_number" placeholder="Mobile number" required>
+                <button type="submit">Add contact</button>
+            </form>
+            <div class="saved-contacts">
+                {% for contact in user.emergency_contacts %}
+                    <article class="saved-contact">
+                        <div><strong>{{ contact.name }}</strong><span>{{ contact.mobile_number }}</span></div>
+                        <div>
+                            <a href="tel:{{ contact.mobile_number }}">Call</a>
+                            <form action="{{ url_for('delete_emergency_contact', contact_id=contact.id) }}" method="post">
+                                <button class="delete-button" type="submit">Remove</button>
+                            </form>
+                        </div>
+                    </article>
+                {% else %}
+                    <p class="empty-state">No contacts saved yet.</p>
+                {% endfor %}
+            </div>
+        </section>
+        <section class="dashboard-card">
+            <h2>SOS history</h2>
+            <p>Each entry records when you activated SOS and the location shared at that moment.</p>
+            <div class="sos-history-list">
+                {% for event in sos_history %}
+                    <article class="sos-history-item">
+                        <div>
+                            <strong>SOS activated</strong>
+                            <span>{{ event.created_at.strftime('%d %b %Y, %I:%M %p UTC') }}</span>
+                            <small>Latitude: {{ '%.6f'|format(event.latitude) }}, Longitude: {{ '%.6f'|format(event.longitude) }}</small>
+                        </div>
+                        <a href="https://www.google.com/maps?q={{ event.latitude }},{{ event.longitude }}" target="_blank" rel="noopener">View map</a>
+                    </article>
+                {% else %}
+                    <p class="empty-state">No SOS events recorded yet.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in | Women Safety</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-page">
+    <header class="auth-header"><h1>Women Safety</h1></header>
+    <main class="auth-card">
+        <h2>Welcome back</h2>
+        <p>Log in to access your safety account.</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}<p class="flash-message {{ category }}">{{ message }}</p>{% endfor %}
+        {% endwith %}
+        <form class="auth-form" method="post">
+            <label for="email">Email address</label>
+            <input id="email" type="email" name="email" required autocomplete="email">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required autocomplete="current-password">
+            <button class="auth-submit" type="submit">Log in</button>
+        </form>
+        <p class="auth-links">New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+        <p class="auth-links"><a href="{{ url_for('main_page') }}">← Back to home</a></p>
+    </main>
+</body>
+</html>
